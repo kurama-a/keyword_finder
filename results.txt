@@ -1,0 +1,6 @@
+File: docx_file.docx, Keyword find in the text: "Test" | Keyword find in the image "Export control" 
+File: keyword.txt, Keyword find in the text: "Export control, Test"
+File: pdf_file.pdf, Keyword find in the text: "Test" | Keyword find in the image "Export control, Test" 
+File: pptx_file.pptx, Keyword find in the text: "Export control, Test"
+File: text_file.txt, Keyword find in the text: "Export control"
+File: xlsx_file.xlsx, Keyword find in the text: "Export control"
