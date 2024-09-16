@@ -96,7 +96,6 @@ def find_keywords_in_text(text, keywords):
     found_keywords = [keyword for keyword in keywords if keyword.lower() in text.lower()]
     return found_keywords
 
-# Fonction pour rechercher les mots-clés dans plusieurs fichiers et écrire les résultats dans un fichier
 # Fonction pour rechercher les mots-clés dans plusieurs fichiers, y compris les sous-répertoires, et écrire les résultats dans un fichier
 def search_keywords_in_files(directory_path, keywords, output_folder, output_file):
     with open(output_file, 'w') as result_file:
