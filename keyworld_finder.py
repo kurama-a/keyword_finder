@@ -97,42 +97,45 @@ def find_keywords_in_text(text, keywords):
     return found_keywords
 
 # Fonction pour rechercher les mots-clés dans plusieurs fichiers et écrire les résultats dans un fichier
+# Fonction pour rechercher les mots-clés dans plusieurs fichiers, y compris les sous-répertoires, et écrire les résultats dans un fichier
 def search_keywords_in_files(directory_path, keywords, output_folder, output_file):
     with open(output_file, 'w') as result_file:
-        # Lister tous les fichiers dans le répertoire
-        for file_name in os.listdir(directory_path):
-            file_path = os.path.join(directory_path, file_name)
-            
-            try:
-                # Extraire le texte du fichier
-                text = extract_text(file_path, output_folder)
+        # Parcourir récursivement les fichiers dans le répertoire et ses sous-répertoires
+        for root, dirs, files in os.walk(directory_path):
+            for file_name in files:
+                file_path = os.path.join(root, file_name)
                 
-                # Rechercher les mots-clés dans le texte
-                found_keywords = find_keywords_in_text(text, keywords)
-                
-                # Rechercher les mots-clés dans les images extraites
-                images_found_keywords = False
-                for img_file in os.listdir(output_folder):
-                    if img_file.startswith(os.path.basename(file_path)):
-                        img_path = os.path.join(output_folder, img_file)
-                        if os.path.isfile(img_path):
-                            ocr_text = extract_text_from_image(img_path)
-                            found_keywords_in_image = find_keywords_in_text(ocr_text, keywords)
-                            if found_keywords_in_image:
-                                images_found_keywords = True
+                try:
+                    # Extraire le texte du fichier
+                    text = extract_text(file_path, output_folder)
+                    
+                    # Rechercher les mots-clés dans le texte
+                    found_keywords = find_keywords_in_text(text, keywords)
+                    
+                    # Rechercher les mots-clés dans les images extraites
+                    images_found_keywords = False
+                    for img_file in os.listdir(output_folder):
+                        if img_file.startswith(os.path.basename(file_path)):
+                            img_path = os.path.join(output_folder, img_file)
+                            if os.path.isfile(img_path):
+                                ocr_text = extract_text_from_image(img_path)
+                                found_keywords_in_image = find_keywords_in_text(ocr_text, keywords)
+                                if found_keywords_in_image:
+                                    images_found_keywords = True
 
-                # Si des mots-clés sont trouvés dans le fichier ou ses images, ajouter au résultat
-                if found_keywords or images_found_keywords:
-                    result_file.write(f"File: {file_name}, ")
-                    if found_keywords:
-                        result_file.write(f"Keyword find in the text: \"{', '.join(found_keywords)}\"")
-                        if images_found_keywords == True:
-                            result_file.write(f" | ")
-                    if images_found_keywords:
-                        result_file.write(f"Keyword find in the image \"{', '.join(found_keywords_in_image)}\" ")
-                    result_file.write("\n")
-            except Exception as e:
-                print(f"Error processing {file_name}: {e}")
+                    # Si des mots-clés sont trouvés dans le fichier ou ses images, ajouter au résultat
+                    if found_keywords or images_found_keywords:
+                        result_file.write(f"File: {file_path}, ")  # Écrire le chemin complet du fichier
+                        if found_keywords:
+                            result_file.write(f"Keyword found in the text: \"{', '.join(found_keywords)}\"")
+                            if images_found_keywords == True:
+                                result_file.write(f" | ")
+                        if images_found_keywords:
+                            result_file.write(f"Keyword found in the image \"{', '.join(found_keywords_in_image)}\" ")
+                        result_file.write("\n")
+                except Exception as e:
+                    print(f"Error processing {file_name}: {e}")
+
                     
 def keyword_file(keyword_file_path):
     with open(keyword_file_path, "r", encoding="utf8") as keyword_file:
@@ -142,7 +145,7 @@ def keyword_file(keyword_file_path):
     return keyword_list
         
 # Exemple d'utilisation
-directory_path = 'C:/Users/arnau/Desktop/Script thales'  
+directory_path = 'C:/Users/arnau/Desktop/Script thales/documents'  
 output_folder = 'images'  # Répertoire pour sauvegarder les images extraites
 output_file = 'C:/Users/arnau/Desktop/Script thales/results.txt'  # Fichier pour enregistrer les résultats
 keyword_file_path = "keyword.txt"
