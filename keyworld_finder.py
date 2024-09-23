@@ -134,7 +134,6 @@ def search_keywords_in_files(directory_path, keywords, output_folder, output_fil
                         result_file.write("\n")
                 except Exception as e:
                     print(f"Error processing {file_name}: {e}")
-
                     
 def keyword_file(keyword_file_path):
     with open(keyword_file_path, "r", encoding="utf8") as keyword_file:
