@@ -6,6 +6,8 @@ import PyPDF2
 from PIL import Image
 import pytesseract
 from pdf2image import convert_from_path
+import tkinter as tk
+from tkinter import filedialog, messagebox, scrolledtext
 
 # Extraction du texte d'un fichier Word
 def extract_text_from_docx(file_path, output_folder):
@@ -96,10 +98,10 @@ def find_keywords_in_text(text, keywords):
     found_keywords = [keyword for keyword in keywords if keyword.lower() in text.lower()]
     return found_keywords
 
-# Fonction pour rechercher les mots-clés dans plusieurs fichiers, y compris les sous-répertoires, et écrire les résultats dans un fichier
-def search_keywords_in_files(directory_path, keywords, output_folder, output_file):
+# Fonction pour rechercher les mots-clés dans plusieurs fichiers, y compris les sous-répertoires, et afficher les résultats
+def search_keywords_in_files(directory_path, keywords, output_folder, output_file, result_text_widget):
     with open(output_file, 'w') as result_file:
-        # Parcourir récursivement les fichiers dans le répertoire et ses sous-répertoires
+        results = ""
         for root, dirs, files in os.walk(directory_path):
             for file_name in files:
                 file_path = os.path.join(root, file_name)
@@ -124,28 +126,75 @@ def search_keywords_in_files(directory_path, keywords, output_folder, output_fil
 
                     # Si des mots-clés sont trouvés dans le fichier ou ses images, ajouter au résultat
                     if found_keywords or images_found_keywords:
-                        result_file.write(f"File: {file_path}, ")  # Écrire le chemin complet du fichier
+                        result_str = f"Fichier : {file_path}\n"
                         if found_keywords:
-                            result_file.write(f"Keyword found in the text: \"{', '.join(found_keywords)}\"")
-                            if images_found_keywords == True:
-                                result_file.write(f" | ")
+                            result_str += f"Mots-cles trouves dans le texte : {', '.join(found_keywords)}\n"
                         if images_found_keywords:
-                            result_file.write(f"Keyword found in the image \"{', '.join(found_keywords_in_image)}\" ")
-                        result_file.write("\n")
-                except Exception as e:
-                    print(f"Error processing {file_name}: {e}")
+                            result_str += f"Mots-cles trouves dans les images : {', '.join(found_keywords_in_image)}\n"
+                        result_str += "-"*80 + "\n"
+                        
+                        result_file.write(result_str)
+                        results += result_str
                     
-def keyword_file(keyword_file_path):
-    with open(keyword_file_path, "r", encoding="utf8") as keyword_file:
-        keyword_list = []   
-        for line in keyword_file:
-            keyword_list.append(line.strip()) 
-    return keyword_list
+                except Exception as e:
+                    error_str = f"Erreur lors du traitement du fichier {file_name} : {e}\n"
+                    result_file.write(error_str)
+                    results += error_str
         
-# Exemple d'utilisation
-directory_path = 'documents'  
-output_folder = 'images'  # Répertoire pour sauvegarder les images extraites
-output_file = 'results.txt'  # Fichier pour enregistrer les résultats
-keyword_file_path = "keyword.txt"
-os.makedirs(output_folder, exist_ok=True)  # Crée le répertoire d'images s'il n'existe pas
-search_keywords_in_files(directory_path, keyword_file(keyword_file_path), output_folder, output_file)
+        if not results:
+            results = "Aucun mot-clé trouvé dans les fichiers analysés."
+            result_file.write(results)
+
+        # Affichage dans le widget ScrolledText
+        result_text_widget.config(state=tk.NORMAL)  # Permettre l'édition pour ajouter les résultats
+        result_text_widget.delete(1.0, tk.END)  # Effacer l'ancien contenu
+        result_text_widget.insert(tk.END, results)  # Ajouter les nouveaux résultats
+        result_text_widget.config(state=tk.DISABLED)  # Désactiver l'édition après ajout
+
+# Interface Graphique (GUI) avec Tkinter
+def browse_directory():
+    directory = filedialog.askdirectory()
+    if directory:
+        directory_path_entry.delete(0, tk.END)
+        directory_path_entry.insert(0, directory)
+
+def search_keywords():
+    directory_path = directory_path_entry.get()
+    keywords = keywords_entry.get().split(',')
+    output_folder = 'images'
+    output_file = 'results.txt'
+
+    if not os.path.exists(directory_path):
+        messagebox.showerror("Erreur", "Le répertoire spécifié n'existe pas.")
+        return
+
+    os.makedirs(output_folder, exist_ok=True)  # Créer le répertoire d'images s'il n'existe pas
+
+    # Recherche des mots-clés et affichage des résultats
+    search_keywords_in_files(directory_path, keywords, output_folder, output_file, result_text_widget)
+
+# Création de la fenêtre principale
+root = tk.Tk()
+root.title("Recherche de mots-clés dans des fichiers")
+
+# Champ pour le chemin du répertoire
+tk.Label(root, text="Sélectionnez le répertoire :").grid(row=0, column=0, padx=10, pady=10)
+directory_path_entry = tk.Entry(root, width=50)
+directory_path_entry.grid(row=0, column=1, padx=10, pady=10)
+tk.Button(root, text="Parcourir", command=browse_directory).grid(row=0, column=2, padx=10, pady=10)
+
+# Champ pour les mots-clés
+tk.Label(root, text="Mots-clés (séparés par des virgules) :").grid(row=1, column=0, padx=10, pady=10)
+keywords_entry = tk.Entry(root, width=50)
+keywords_entry.grid(row=1, column=1, padx=10, pady=10)
+
+# Bouton de lancement de la recherche
+tk.Button(root, text="Rechercher", command=search_keywords).grid(row=2, column=1, padx=10, pady=20)
+
+# Zone de texte pour afficher les résultats avec une barre de défilement
+result_text_widget = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=80, height=20, font=("Arial", 10))
+result_text_widget.grid(row=3, column=0, columnspan=3, padx=10, pady=10)
+result_text_widget.config(state=tk.DISABLED)  # Désactiver l'édition pour la zone des résultats
+
+# Lancer la boucle principale Tkinter
+root.mainloop()

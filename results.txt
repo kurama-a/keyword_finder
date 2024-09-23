@@ -1,6 +1,0 @@
-File: documents\docx_file.docx, Keyword found in the text: "Test" | Keyword found in the image "Export control" 
-File: documents\pdf_file.pdf, Keyword found in the text: "Test" | Keyword found in the image "Export control, Test" 
-File: documents\pptx_file.pptx, Keyword found in the text: "Export control, Test"
-File: documents\text_file.txt, Keyword found in the text: "Export control"
-File: documents\xlsx_file.xlsx, Keyword found in the text: "Export control"
-File: documents\repository\text2_file.txt, Keyword found in the text: "Test"
