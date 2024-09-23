@@ -144,9 +144,9 @@ def keyword_file(keyword_file_path):
     return keyword_list
         
 # Exemple d'utilisation
-directory_path = 'C:/Users/arnau/Desktop/Script thales/documents'  
+directory_path = 'documents'  
 output_folder = 'images'  # Répertoire pour sauvegarder les images extraites
-output_file = 'C:/Users/arnau/Desktop/Script thales/results.txt'  # Fichier pour enregistrer les résultats
+output_file = 'results.txt'  # Fichier pour enregistrer les résultats
 keyword_file_path = "keyword.txt"
 os.makedirs(output_folder, exist_ok=True)  # Crée le répertoire d'images s'il n'existe pas
 search_keywords_in_files(directory_path, keyword_file(keyword_file_path), output_folder, output_file)
