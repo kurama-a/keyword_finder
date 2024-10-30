@@ -1,0 +1,100 @@
+Error processing c:\Users\Arnaud\AppData\Local\Packages\Microsoft.XboxGamingOverlay_8wekyb3d8bbwe\LocalState\DiagOutputDir\XboxGamingOverlayTraces_FT_Server_20240125143508.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\big5.txt: 'utf-8' codec can't decode byte 0xa6 in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\big5hkscs.txt: 'utf-8' codec can't decode byte 0x88 in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\cp949.txt: 'utf-8' codec can't decode byte 0x8c in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\euc_jisx0213.txt: 'utf-8' codec can't decode byte 0xa4 in position 7: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\WebStorage\5\CacheStorage\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\euc_jp.txt: 'utf-8' codec can't decode byte 0xa4 in position 7: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\WebStorage\6\CacheStorage\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\euc_kr.txt: 'utf-8' codec can't decode byte 0xa1 in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\WebStorage\8\CacheStorage\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\gb18030.txt: 'utf-8' codec can't decode byte 0xa3 in position 6: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\gb2312.txt: 'utf-8' codec can't decode byte 0xa3 in position 6: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\gbk.txt: 'utf-8' codec can't decode byte 0xa3 in position 6: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\johab.txt: 'utf-8' codec can't decode byte 0x99 in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\shift_jis.txt: 'utf-8' codec can't decode byte 0x82 in position 7: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Programs\Python\Python39\Lib\test\cjkencodings\shift_jisx0213.txt: 'utf-8' codec can't decode byte 0x82 in position 7: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage\2b5c392d2730c0910fd56433cc5e73e510d0f2b4\index.txt: 'utf-8' codec can't decode byte 0x80 in position 67: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage\3cedfb74d44f2e84198d23075aef16c34a668ceb\index.txt: 'utf-8' codec can't decode byte 0x80 in position 58: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Local\Microsoft\Edge\User Data\Default\Service Worker\CacheStorage\b2d132a53360a22ce10092746d838d3b7a26881f\index.txt: 'utf-8' codec can't decode byte 0x80 in position 82: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\Service Worker\CacheStorage\37ec5e0f3f138abb9560214f06d1225cd33eb8f5\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\Service Worker\CacheStorage\6c997a46803fe67941786630871317c5bf6f5af5\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\Service Worker\CacheStorage\8345f13ebeede907e2e7023696166681d769bc09\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\Service Worker\CacheStorage\bbc0f5b6ec3c6360246458cd79ea7596092e22ea\index.txt: 'utf-8' codec can't decode byte 0x80 in position 66: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\-12021675\gnsv.csv: Error tokenizing data. C error: Expected 1 fields in line 8, saw 9
+
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\-55263c1e\vzYi.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\0a37.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\0iZl.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\4R0L.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\5UZa.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\9fAx.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\dZbl.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\FyNn.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\iQsn.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\kc8o.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\MiCE.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\OhdL.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\Q5bp.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\qvPM.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\Rv0M.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\VQNq.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\Wv5h.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\Xuft.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\29d460a8\yTQ4.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\4383.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\53Ox.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\5yE7.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\GH5P.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\hKHd.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\iMrR.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\kmnH.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\qCzE.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\rXzt.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\Sq88.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\WcJP.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\34ca4f36\zAit.csv: No columns to parse from file
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\4482247b\1RI8.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\4482247b\3NRs.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\4482247b\kfI3.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\4482247b\ks7Y.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\4482247b\WGRJ.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\AppData\Roaming\Code\User\History\59284d42\ZTpd.csv: Error tokenizing data. C error: EOF inside string starting at row 2
+Error processing c:\Users\Arnaud\Desktop\Compare_ip\20240325_listhosts.csv: Error tokenizing data. C error: Expected 1 fields in line 206, saw 3
+
+Error processing c:\Users\Arnaud\Desktop\Compare_ip\IP_List.csv: Error tokenizing data. C error: Expected 1 fields in line 8, saw 9
+
+Error processing c:\Users\Arnaud\Desktop\GvManager\GVManager_20240729.csv: Error tokenizing data. C error: Expected 1 fields in line 3, saw 2
+
+Error processing c:\Users\Arnaud\Desktop\Scripts\keyword_finder\requirements.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Error processing c:\Users\Arnaud\Downloads\listhosts(1).csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts(2).csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts(3).csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts(4).csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts(5).csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts.csv: Error tokenizing data. C error: Expected 1 fields in line 328, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\listhosts.xls: Missing optional dependency 'xlrd'. Install xlrd >= 2.0.1 for xls Excel support Use pip or conda to install xlrd.
+Error processing c:\Users\Arnaud\Downloads\listincidents(1).csv: Error tokenizing data. C error: Expected 1 fields in line 7, saw 4
+
+Error processing c:\Users\Arnaud\Downloads\listincidents.csv: Error tokenizing data. C error: Expected 1 fields in line 7, saw 4
+
+Error processing c:\Users\Arnaud\Downloads\listsubnets.csv: Error tokenizing data. C error: Expected 1 fields in line 162, saw 2
+
+Error processing c:\Users\Arnaud\Downloads\network(1).csv: Error tokenizing data. C error: Expected 1 fields in line 17, saw 2
+
+Error processing c:\Users\Arnaud\Downloads\network(2).csv: Error tokenizing data. C error: Expected 1 fields in line 310, saw 3
+
+Error processing c:\Users\Arnaud\Downloads\network.csv: Error tokenizing data. C error: Expected 1 fields in line 17, saw 2
+
+Error processing c:\Users\Arnaud\Downloads\Installer_Software\PingCastle_3.0.0.4\changelog.txt: 'utf-8' codec can't decode byte 0xe0 in position 9401: invalid continuation byte
+Error processing c:\Users\Arnaud\Desktop\Scripts\csvToJson\GVManager_20240729.csv: Error tokenizing data. C error: Expected 1 fields in line 310, saw 3
+
+Error processing c:\Users\Arnaud\Desktop\Scripts\IpamGV\GVManager_20231026.csv: Error tokenizing data. C error: Expected 1 fields in line 17, saw 2
+
+Error processing c:\Users\Arnaud\Desktop\Scripts\IpamPython\requirements.txt: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte

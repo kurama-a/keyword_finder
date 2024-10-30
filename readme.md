@@ -2,15 +2,20 @@
 
 ## Description
 
-Ce script permet d'extraire du texte et des images de divers types de fichiers (Word, Excel, PowerPoint, PDF, TXT, et images). Il recherche ensuite des mots-clés dans le texte extrait, ainsi que dans les images extraites via l'OCR. Les résultats sont enregistrés dans un fichier texte nommé `results.txt`.
+Ce script permet d'extraire du texte et des images de divers types de fichiers (Word, Excel, PowerPoint, PDF, TXT...). Il recherche ensuite des mots-clés dans le texte extrait. Les résultats sont enregistrés dans un fichier csv.
 
 ### Types de fichiers pris en charge :
-- `.docx` : Fichiers Word
-- `.doc` : Fichiers Word
-- `.xlsx` : Fichiers Excel
-- `.pptx` : Fichiers PowerPoint
-- `.pdf` : Fichiers PDF
-- `.txt` : Fichiers texte brut
+- `.docx`
+- `.doc` 
+- `.xlsx` 
+- `.pptx` 
+- `.pdf`
+- `.txt` 
+- `.csv`
+- `.odt`
+- `.ods`
+- `.odp`
+- `.xls`
 
 ## Prérequis
 

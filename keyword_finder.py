@@ -11,13 +11,26 @@ from concurrent.futures import ProcessPoolExecutor
 PROGRESS_LOG_FILE = 'progress.log'
 ERROR_LOG_FILE = 'error.log'
 
-# Extraction du texte d'un fichier Word
+SUPPORTED_EXTENSIONS = {'.docx', '.doc', '.xlsx', '.pptx', '.pdf', '.txt', '.csv', '.odt', '.ods', '.odp', '.xls'}
+
+# Fonction pour effacer les fichiers de log si nécessaire
+def initialize_logs(overwrite_logs):
+    if overwrite_logs:
+        open(PROGRESS_LOG_FILE, 'w').close()
+        open(ERROR_LOG_FILE, 'w').close()
+
+# Fonction pour compter le nombre total de fichiers à scanner
+def count_files(directory_path):
+    total_files = sum(len([f for f in files if os.path.splitext(f)[-1].lower() in SUPPORTED_EXTENSIONS]) 
+                      for _, _, files in os.walk(directory_path))
+    return total_files
+
+# Extraction du texte pour les différents formats de fichiers
 def extract_text_from_docx(file_path):
     doc = Document(file_path)
     text = ' '.join([para.text for para in doc.paragraphs])
     return text
 
-# Fonction pour extraire le texte d'un fichier Word (.doc)
 def extract_text_from_doc(file_path):
     try:
         word = win32.gencache.EnsureDispatch("Word.Application")
@@ -29,12 +42,10 @@ def extract_text_from_doc(file_path):
     except ImportError:
         raise ImportError("pywin32 doit être installé pour extraire le texte d'un fichier .doc")
 
-# Extraction du texte d'un fichier Excel
 def extract_text_from_excel(file_path):
     data = pd.read_excel(file_path)
     return ' '.join(data.astype(str).values.flatten())
 
-# Extraction du texte d'un fichier PowerPoint
 def extract_text_from_pptx(file_path):
     prs = Presentation(file_path)
     text = ''
@@ -44,7 +55,11 @@ def extract_text_from_pptx(file_path):
                 text += shape.text + ' '
     return text
 
-# Extraction du texte d'un fichier PDF
+def find_urls(text):
+    url_pattern = r'(https?://[^\s]+)'
+    urls = re.findall(url_pattern, text)
+    return urls
+
 def extract_text_from_pdf(file_path):
     text = ''
     with open(file_path, 'rb') as f:
@@ -53,16 +68,38 @@ def extract_text_from_pdf(file_path):
             text += page.extract_text()
     return text
 
-# Extraction du texte d'un fichier TXT
 def extract_text_from_txt(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
 
-# Fonction pour détecter les URLs dans le texte extrait
-def find_urls(text):
-    url_pattern = r'(https?://[^\s]+)'
-    urls = re.findall(url_pattern, text)
-    return urls
+def extract_text_from_csv(file_path):
+    data = pd.read_csv(file_path, encoding='utf-8', sep=',')  # Modifier le séparateur si nécessaire
+    text = ' '.join(data.astype(str).values.flatten())
+    return text.lower() 
+
+def extract_text_from_odt(file_path):
+    import odf.opendocument
+    from odf.text import P
+    doc = odf.opendocument.load(file_path)
+    text = ' '.join([str(p) for p in doc.getElementsByType(P)])
+    return text
+
+def extract_text_from_ods(file_path):
+    data = pd.read_excel(file_path, engine='odf')
+    return ' '.join(data.astype(str).values.flatten())
+
+def extract_text_from_odp(file_path):
+    prs = Presentation(file_path)
+    text = ''
+    for slide in prs.slides:
+        for shape in slide.shapes:
+            if hasattr(shape, "text"):
+                text += shape.text + ' '
+    return text
+
+def extract_text_from_xls(file_path):
+    data = pd.read_excel(file_path)
+    return ' '.join(data.astype(str).values.flatten())
 
 # Fonction pour détecter le type de fichier et extraire le texte correspondant
 def extract_text(file_path):
@@ -79,12 +116,23 @@ def extract_text(file_path):
         return extract_text_from_pdf(file_path)
     elif ext == '.txt':
         return extract_text_from_txt(file_path)
+    elif ext == '.csv':
+        return extract_text_from_csv(file_path)
+    elif ext == '.odt':
+        return extract_text_from_odt(file_path)
+    elif ext == '.ods':
+        return extract_text_from_ods(file_path)
+    elif ext == '.odp':
+        return extract_text_from_odp(file_path)
+    elif ext == '.xls':
+        return extract_text_from_xls(file_path)
     else:
         raise ValueError(f"Unsupported file format: {ext}")
 
 # Fonction pour rechercher les mots-clés et les URLs dans le texte extrait
 def find_keywords_and_urls_in_text(text, keywords):
-    found_keywords = [keyword for keyword in keywords if keyword.lower() in text.lower()]
+    text = text.lower()
+    found_keywords = [keyword for keyword in keywords if keyword.lower() in text]
     urls = find_urls(text)
     return found_keywords, urls
 
@@ -102,11 +150,11 @@ def process_file(file_info, keywords):
                 'URLs': ';'.join(set(urls))
             }
     except Exception as e:
-        # Enregistrer les erreurs dans error.log
-        with open(ERROR_LOG_FILE, 'a') as error_file:
-            error_file.write(f"Error processing {file_path}: {e}\n")
+        ext = os.path.splitext(file_path)[-1].lower()
+        if ext in SUPPORTED_EXTENSIONS:
+            with open(ERROR_LOG_FILE, 'a') as error_file:
+                error_file.write(f"Error processing {file_path}: {e}\n")
     return None
-
 
 # Fonction pour lire l'état de progression
 def load_progress():
@@ -121,14 +169,22 @@ def save_progress(processed_files):
         for file in processed_files:
             f.write(f"{file}\n")
 
-# Fonction principale pour rechercher les mots-clés en parallèle
+# Fonction principale pour rechercher les mots-clés en parallèle avec suivi de progression
 def search_keywords_in_files(directory_path, keywords, csv_output_file, batch_size=100):
     results_data = []
     processed_files = load_progress()
-    file_paths = [(os.path.join(root_dir, file_name), root_dir) 
-                  for root_dir, _, files in os.walk(directory_path) 
-                  for file_name in files if os.path.join(root_dir, file_name) not in processed_files]
+    file_paths = [
+        (os.path.join(root_dir, file_name), root_dir) 
+        for root_dir, _, files in os.walk(directory_path) 
+        for file_name in files 
+        if os.path.splitext(file_name)[-1].lower() in SUPPORTED_EXTENSIONS
+        and os.path.join(root_dir, file_name) not in processed_files
+    ]
 
+    total_files = len(file_paths)
+    print(f"Nombre total de fichiers à scanner : {total_files}")
+
+    current_file = 0
     with ProcessPoolExecutor() as executor:
         futures = []
         batch = []
@@ -136,6 +192,9 @@ def search_keywords_in_files(directory_path, keywords, csv_output_file, batch_si
         # Traiter les fichiers en lot pour sauvegarder périodiquement
         for file_info in file_paths:
             batch.append(file_info)
+            current_file += 1
+            print(f"Progression : {current_file}/{total_files}", end='\r')
+            
             if len(batch) >= batch_size:
                 futures.append(executor.submit(process_batch, batch, keywords))
                 batch = []
@@ -156,7 +215,7 @@ def search_keywords_in_files(directory_path, keywords, csv_output_file, batch_si
         df = pd.DataFrame(results_data)
         df.to_csv(csv_output_file, index=False, mode='a', header=not os.path.exists(csv_output_file))
 
-    print(f"Scan completed. Results saved to {csv_output_file}")
+    print(f"\nScan terminé. Résultats sauvegardés dans {csv_output_file}")
 
 # Fonction pour traiter un lot de fichiers
 def process_batch(file_batch, keywords):
@@ -182,7 +241,11 @@ def main():
     parser.add_argument('directory', type=str, help="Chemin du répertoire à scanner.")
     parser.add_argument('keyword_file', type=str, help="Fichier contenant les mots-clés séparés par des virgules.")
     parser.add_argument('--csv_output_file', type=str, default='keyword_search_results.csv', help="Fichier CSV pour enregistrer les résultats.")
+    parser.add_argument('--overwrite_logs', action='store_true', help="Réécrire les logs existants.")
     args = parser.parse_args()
+
+    # Initialiser les logs selon l'option overwrite_logs
+    initialize_logs(args.overwrite_logs)
 
     # Charger les mots-clés depuis le fichier
     keywords = load_keywords(args.keyword_file)
