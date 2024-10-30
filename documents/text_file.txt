@@ -3,3 +3,7 @@ Fichier de text
 Peut contenir des données sensibles.
 
 Export control
+
+http://test.com
+
+https://test2.fr
