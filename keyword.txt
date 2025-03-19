@@ -1,1 +1,1 @@
-export control,test,test
+export control,test,Test

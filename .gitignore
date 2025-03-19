@@ -1,2 +1,6 @@
 *.log
 keyword_search_results.csv
+venv/
+__pycache__/
+*.pyc
+*.pyo
