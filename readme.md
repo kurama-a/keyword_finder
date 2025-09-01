@@ -52,39 +52,40 @@ Cela installera les outils nécessaires et les ajoutera au **PATH** de votre sys
 
 # Utilisation
 
-## 1. **Préparation des fichiers et répertoires**
+Here is the English translation:
 
-- Le fichier **process.log** va contenir tous les fichiers testés avec leur emplacement, il va permettre de reprendre là où le programmme s'est arrêté en cas de problème.
-- **Ajouter les mots-clés dans le fichier** nommé `keywords.txt` contenant une liste de mots-clés séparés par des virgules.
+---
+
+## 1. **Preparation of Files and Directories**
+
+- The **process.log** file will contain all tested files with their locations. It allows the program to resume where it left off in case of an issue.
+- **Add the keywords to a file** named `keywords.txt` containing a list of keywords separated by commas.
 
 ```
-mot-clé1,mot-clé2,phrase test
+keyword1,keyword2,test phrase
 ```
-Les mots-clés sont **insensibles à la casse** (`Mot-Clé` = `mot-clé`).
+Keywords are **case-insensitive** (`Keyword` = `keyword`).
 
+## 2. **Running the Script**
 
-## 2. **Exécution du script** 
-
-Lance le script en spécifiant le répertoire à analyser et le fichier de mots-clés :
+Run the script by specifying the directory to analyze and the keywords file:
 
 ```bash
-python keyword_finder.py chemin_répertoire fichier_mots_clés.txt
+python keyword_finder.py directory_path keywords_file.txt
 ```
 
-### **Options disponibles :**
+### **Available Options:**
 | Option | Description |
 |--------|-------------|
-| `--csv_output_file <nom_du_fichier>` | Spécifie un fichier CSV personnalisé pour stocker les résultats. |
-| `--overwrite_logs` | Recherche des mots clés même dans les fichiers déjà scannés. |
+| `--csv_output_file <file_name>` | Specifies a custom CSV file to store the results. |
+| `--overwrite_logs` | Searches for keywords even in already scanned files. |
 
-Exemples :
+Examples:
 ```bash
-python keyword_finder.py documents keywords.txt --csv_output_file resultats.csv
+python keyword_finder.py documents keywords.txt --csv_output_file results.csv
 
 python keyword_finder.py documents keywords.txt --overwrite_logs
 ```
-
----
 
 ## 3. **Résultats de l’analyse**
 
